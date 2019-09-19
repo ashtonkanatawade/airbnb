@@ -69,9 +69,18 @@
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-12 position-fixed notice" style="background-color:#C2E4E7;">
-            <p><i class="far fa-comment-dots fa-2x"></i>今のところ、ギフトカードはアメリカ居住者のみご購入いただけます。アメリカにお住いの場合は、アカウントの設定から居住国を更新してください。</p>
-            <i id="close" class="fa fa-lg fa-times close-modal"></i>
+        <div class="col-12 position-fixed notice">
+          <div id="modal">
+            <div>
+              <i class="far fa-comment-dots fa-2x"></i>
+            </div>
+            <div>
+              <p>今のところ、ギフトカードはアメリカ居住者のみご購入いただけます。アメリカにお住いの場合は、アカウントの設定から居住国を更新してください。</p>
+            </div>
+            <div id="close">
+              <i class="fa fa-lg fa-times close-modal"></i>
+            </div>
+          </div>
         </div>
         <div class="col-12 main">
           <h1>旅を贈ろう。</h1>
@@ -82,6 +91,7 @@
         <div class="col-lg-12 col-xs-12 main1 row">
           <h1 class="center-block">いつも完璧な贈りもの</h1>
         </div>
+        <div class="col-12">
         <div class="row main2">
           <div class="col-md-4 col-xs-12">
             <div id="sub" >
@@ -105,9 +115,10 @@
             </div>
           </div>
       </div>
-
+</div>
       <div class="col-12 main3">
         <div class="sub1">
+          <img src="img/Present Icon.png" alt="">
           <h1>ギフトカードをもらったら…</h1>
           <p>ログインあるいは利用登録してギフトを登録するだけです。あとは使い途をゆっくり考えましょう。</p>
             <button type="button" class="btn btn-danger border-0" style="font-weight:bold; height: 42px; width:232px;">ギフトカードを登録する</button>
@@ -179,8 +190,10 @@
       観光庁長官(01)第S0001号(2018年6月15<br class="sp_br">日-2023年6月14日)</a>
       <p>&copy; 2019 Airbnb, Inc. All rights reserved.</p>
     </div>
+    <div class="yenjpn">
       <button class="button yen" type="button" name="button">JPY - &yen;</button>
       <button class="button japan" type="button" name="button">日本語</button>
+    </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script>
@@ -204,6 +217,7 @@
       $(".msg3").hide();
       $(".navbar-search").hide();
       $("footer").hide();
+      $(".center-block").hide();
     } else {
       $(".main2").show();
       $(".main3").show();
@@ -211,9 +225,26 @@
       $(".msg3").show();
       $(".navbar-search").show();
       $("footer").show();
+      $(".center-block").show();
       }
     });
 
+if (window.matchMedia( "(max-width:411px)" ).matches) {
+    $("#query,.fa-search").on("click", function() {
+      $(this).toggleClass("active");
+      if($(this).hasClass("active")){
+      $(".navbar-search").animate({'left':'-28px'},200);
+      $(".fa-search").hide();
+      $(".navbar-search .search-query:focus, .navbar-search .search-query.focused").css('padding-left','10px');
+      $("#cancel").fadeIn(1000);
+      } else {
+      $(".navbar-search").animate({'left':'30px'},200);
+      $(".fa-search").show();
+      $(".navbar-search .search-query:focus, .navbar-search .search-query.focused").css('padding-left','40px');
+      $("#cancel").hide();
+      }
+    });
+  } else if (window.matchMedia( "(max-width:768px)" ).matches) {
     $("#query,.fa-search").on("click", function() {
       $(this).toggleClass("active");
       if($(this).hasClass("active")){
@@ -228,6 +259,7 @@
       $("#cancel").hide();
       }
     });
+  }
   });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -235,4 +267,24 @@
     <script src="script.js"></script>
 
   </body>
+      <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#config-web-app -->
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCxiakzS8BO2DcEUg88DJN0TStg9oe7vkc",
+        authDomain: "portfolio-3f996.firebaseapp.com",
+        databaseURL: "https://portfolio-3f996.firebaseio.com",
+        projectId: "portfolio-3f996",
+        storageBucket: "",
+        messagingSenderId: "4623907280",
+        appId: "1:4623907280:web:e24be858a13c9f82f921d5"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
 </html>
